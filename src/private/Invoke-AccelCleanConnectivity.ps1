@@ -7,7 +7,7 @@ function Invoke-AccelCleanConnectivity {
     if (-not (Test-Path -LiteralPath $pc -PathType Container)) { return 0 }
 
     $patterns = @(
-        'var\.management_',            # any var.management_*
+        'var\.management_',
         '\bmodule\.management_resources\b'
     )
     Remove-AccelLines -Directory $pc -RegexPatterns $patterns -Confirm:$false
