@@ -18,13 +18,13 @@ Import-Module ./src/Split-Accelerator.psd1 -Force
 **Dry run**
 
 ```powershell
-Split-Accelerator ../path/to/alz-mgmt/ -WhatIf -Verbose
+Split-Accelerator /path/to/alz-mgmt/ -WhatIf -Verbose
 ```
 
 **Execute**
 
 ```powershell
-Split-Accelerator ../path/to/alz-mgmt/
+Split-Accelerator /path/to/alz-mgmt/
 ```
 
 ## What it does (high level)
