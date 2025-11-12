@@ -16,7 +16,9 @@ function Invoke-AccelCleanManagement {
         '\bvar\.virtual_hubs\b',
         '\bvar\.connectivity_tags\b',
         '\bmodule\.hub_and_spoke_vnet\b',
-        '\bmodule\.virtual_wan\b'
+        '\bmodule\.virtual_wan\b',
+
+        '\bmodule\.config\.outputs\.(hub_and_spoke_networks_settings|hub_virtual_networks|virtual_wan_settings|virtual_hubs)\b'
     )
     Remove-AccelLines -Directory $pm -RegexPatterns $patterns -Confirm:$false
 }
