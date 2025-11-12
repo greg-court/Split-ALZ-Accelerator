@@ -6,7 +6,7 @@
   CompanyName       = 'You'
   Description       = 'Split an ALZ deployment into platform_* and refactor modules.'
   PowerShellVersion = '7.0'
-  FunctionsToExport = @('Split-Accelerator')   # ← only this
+  FunctionsToExport = @('Split-Accelerator')
   PrivateData = @{
     PSData = @{
       Tags       = @('ALZ','Terraform','Split','Accelerator')
