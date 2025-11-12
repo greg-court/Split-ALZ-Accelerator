@@ -24,7 +24,7 @@ Split-Accelerator ../path/to/alz-mgmt/ -WhatIf -Verbose
 **Execute**
 
 ```powershell
-Split-Accelerator ../path/to/alz-mgmt/ -Confirm:$false [-Force] [-Verbose]
+Split-Accelerator ../path/to/alz-mgmt/
 ```
 
 ## What it does (high level)
