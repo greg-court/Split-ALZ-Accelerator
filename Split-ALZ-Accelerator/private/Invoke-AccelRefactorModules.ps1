@@ -1,7 +1,7 @@
 function Invoke-AccelRefactorModules {
     <#
     .SYNOPSIS
-    Phase 2: rename 'modules' → 'accelerator-modules', create 'custom-modules',
+    Phase 2: rename 'modules' → '_modules-accelerator', create '_modules-custom',
              rewrite module sources in .tf, and add .auto.tfvars symlinks.
     .EXAMPLE
     Invoke-AccelRefactorModules -Path '../alz-mgmt' -WhatIf -Verbose
@@ -16,8 +16,8 @@ function Invoke-AccelRefactorModules {
     if (-not $PSCmdlet.ShouldProcess($root, "Refactor modules & add symlinks")) { return }
 
     $oldModules = Join-Path $root 'modules'
-    $newModules = Join-Path $root 'accelerator-modules'
-    $customMods = Join-Path $root 'custom-modules'
+    $newModules = Join-Path $root '_modules-accelerator'
+    $customMods = Join-Path $root '_modules-custom'
 
     $summary = [ordered]@{
         ModulesRenamed     = $false
@@ -27,17 +27,17 @@ function Invoke-AccelRefactorModules {
         Skipped            = 0
     }
 
-    # 1) rename modules -> accelerator-modules (idempotent)
+    # 1) rename modules -> _modules-accelerator (idempotent)
     try {
         $res = Invoke-AccelOperation -Action Move -Source $oldModules -Destination $newModules -Force:$Force -Confirm:$false
         if ($res -eq 'Moved' -or (Test-Path $newModules)) { $summary.ModulesRenamed = $true } else { $summary.Skipped++ }
     } catch { Write-Warning "Rename modules failed: $($_.Exception.Message)"; $summary.Skipped++ }
 
-    # 2) ensure custom-modules/
+    # 2) ensure _modules-custom/
     try {
         New-AccelDirectory -Path $customMods -Confirm:$false | Out-Null
         $summary.CustomModulesReady = $true
-    } catch { Write-Warning "Create custom-modules failed: $($_.Exception.Message)"; $summary.Skipped++ }
+    } catch { Write-Warning "Create _modules-custom failed: $($_.Exception.Message)"; $summary.Skipped++ }
 
     # 3) rewrite module sources in all .tf files
     try {
