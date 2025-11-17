@@ -1,4 +1,4 @@
-# Split-ALZ-Accelerator (ALZ)
+# Split-ALZ-Accelerator
 
 A tiny PowerShell helper that takes a single ALZ deployment and turns it into **platform_connectivity** and **platform_management**—then tidies references so each can run cleanly.
 
