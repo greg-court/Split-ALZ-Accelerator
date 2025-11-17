@@ -1,11 +1,11 @@
-function Split-Accelerator {
+function Split-ALZ-Accelerator {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Medium')]
     param(
         [Parameter(Mandatory)][string]$Path,
         [switch]$Force
     )
 
-    Write-Verbose "Split-Accelerator starting at $(Get-Date -Format o)"
+    Write-Verbose "Split-ALZ-Accelerator starting at $(Get-Date -Format o)"
 
     if ($PSCmdlet.ShouldProcess($Path, "Split ALZ into platform_*; refactor modules; clean configs; fix providers")) {
 

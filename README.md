@@ -1,6 +1,6 @@
 # Split-ALZ-Accelerator
 
-A tiny PowerShell helper that takes a single ALZ deployment and turns it into **platform_connectivity** and **platform_management**—then tidies references so each can run cleanly.
+A tiny PowerShell helper that takes a single ALZ deployment and turns it into **platform_connectivity** and **platform_management**, then tidies references so each can run cleanly.
 
 ## Prereqs
 
@@ -10,7 +10,7 @@ A tiny PowerShell helper that takes a single ALZ deployment and turns it into **
 ## Install / Import
 
 ```powershell
-Import-Module ./src/Split-Accelerator.psd1 -Force
+Import-Module ./src/Split-ALZ-Accelerator.psd1 -Force
 ```
 
 ## Quick Start
@@ -18,13 +18,13 @@ Import-Module ./src/Split-Accelerator.psd1 -Force
 **Dry run**
 
 ```powershell
-Split-Accelerator /path/to/alz-mgmt/ -WhatIf -Verbose
+Split-ALZ-Accelerator /path/to/alz-mgmt/ -WhatIf -Verbose
 ```
 
 **Execute**
 
 ```powershell
-Split-Accelerator /path/to/alz-mgmt/
+Split-ALZ-Accelerator /path/to/alz-mgmt/
 ```
 
 ## What it does (high level)
