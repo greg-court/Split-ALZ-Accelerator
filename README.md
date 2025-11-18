@@ -10,7 +10,7 @@ A tiny PowerShell helper that takes a single ALZ deployment and turns it into **
 ## Install / Import
 
 ```powershell
-Import-Module ./src/Split-ALZ-Accelerator.psd1 -Force
+Import-Module ./Split-ALZ-Accelerator/Split-ALZ-Accelerator.psd1 -Force
 ```
 
 ## Quick Start
