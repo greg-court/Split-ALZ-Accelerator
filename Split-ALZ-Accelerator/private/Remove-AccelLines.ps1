@@ -1,7 +1,8 @@
 function Remove-AccelLines {
     <#
       .SYNOPSIS
-      Remove entire lines from all *.tf files under a directory if they match any given regex patterns.
+      Remove entire lines from all *.tf and *.tfvars.json files under a
+      directory if they match any given regex patterns.
     #>
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -12,11 +13,17 @@ function Remove-AccelLines {
     $dirPath = Resolve-AccelPath -Path $Directory
     if (-not (Test-Path -LiteralPath $dirPath -PathType Container)) { return 0 }
 
-    $files = Get-ChildItem -Path $dirPath -Recurse -Filter '*.tf' -File -ErrorAction SilentlyContinue
+    # all *.tf and *.tfvars.json files
+    $files = Get-ChildItem -Path $dirPath -Recurse -File -ErrorAction SilentlyContinue |
+        Where-Object {
+            $_.Name -like '*.tf' -or $_.Name -like '*.tfvars.json'
+        }
+
     if (-not $files) { return 0 }
 
     # combine to single case-insensitive regex
-    $rx = [regex]::new('(' + ($RegexPatterns -join '|') + ')', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+    $rx = [regex]::new('(' + ($RegexPatterns -join '|') + ')',
+        [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
 
     $changedCount = 0
     foreach ($f in $files) {
